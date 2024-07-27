@@ -1,0 +1,72 @@
+body {
+    padding: 1em 5em 5em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form > div {
+    padding: 0.4em 0.4em 0.4em 0;
+}
+
+.textfield {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.textfield > input {
+    min-width: 100%;
+    min-height: 2em;
+    padding-left: 0.7em;
+    top: 1em;
+}
+
+.textfield > label {
+    padding-bottom: 0.5em;
+}
+
+button {
+    border-radius: 0.3em;
+    color: white;
+    border: 0;
+    padding: 0.4em;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button[type="submit"] {
+    background-color: blue;
+}
+
+button[type="reset"] {
+    background-color: red;
+}
+
+button[type="button"] {
+    background-color: green;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.hide {
+    color: red;
+    display: none;
+    font-size: 0.7em;
+}
+
+.inline {
+    display: inline;
+}
+
+.show {
+    display: block;
+}
+
+.invalid {
+    border-color: red;
+}

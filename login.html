@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Recipe Manager</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Recipe Manager">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="HTML, CSS, JavaScript, Portfolio">
+        <meta name="author" content="Alexis Mugisha, Michael Nwaeze, Igwilo Chidumebi">
+        <link rel="stylesheet" type="text/css" href="css/loginStyle.css">
+    </head>
+    <body>
+    <div class="formcontainer">
+        <h1>Login</h1>
+        <hr>
+        <form method="post" action="" onsubmit="return validate();">
+
+            <div class="textfield">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" id="email" placeholder="Email">
+                <span class="hide" id="hideEmail"><b>x </b>Email address should be non-empty with the format xyz@xyz.xyz.</span>
+            </div>
+
+            <div class="textfield">
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="Password">
+                <span class="hide" id="hidePass"><b>x </b>Password should be more than 8 characters long.</span>
+            </div>
+
+            <button type="submit">Login</button>&nbsp;&nbsp;
+            <button type="reset">Reset</button>&nbsp;&nbsp;
+            <button id="registerBtn" type="button">Register</button>
+
+        </form>
+    </div>
+    <script src="js/loginScript.js"></script>
+    </body>
+</html>

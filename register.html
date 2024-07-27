@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Recipe Manager</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Recipe Manager">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="HTML, CSS, JavaScript, Portfolio">
+        <meta name="author" content="Alexis Mugisha, Michael Nwaeze, Igwilo Chidumebi">
+        <link rel="stylesheet" type="text/css" href="css/loginStyle.css">
+    </head>
+    <body>
+    <div class="formcontainer">
+        <h1>Register</h1>
+        <hr>
+        <form method="post" action="" onsubmit="return validate();">
+
+            <div class="textfield">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" id="email" placeholder="Email">
+                <span class="hide" id="hideEmail"><b>x </b>Email address should be non-empty with the format xyz@xyz.xyz.</span>
+            </div>
+
+            <div class="textfield">
+                <label for="login">User Name</label>
+                <input type="text" name="login" id="login" placeholder="User name">
+                <span class="hide" id="hideName"><b>x </b>Username should be non-empty, and within 30 characters long.</span>
+            </div>
+
+            <div class="textfield">
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" placeholder="Password">
+                <span class="hide" id="hidePass"><b>x </b>Password should be more than 8 characters long.</span>
+            </div>
+
+            <div class="textfield">
+                <label for="pass2">Re-type Password</label>
+                <input type="password" id="pass2" placeholder="Password">
+                <span class="hide" id="hidePass2"><b>x </b>Re-typed password should match the password above.</span>
+            </div>
+
+            <button type="submit">Sign-Up</button>&nbsp;&nbsp;
+            <button type="reset">Reset</button>&nbsp;&nbsp;
+            <button id="loginBtn" type="button">Login</button>
+
+        </form>
+    </div>
+    <script src="js/registerScript.js"></script>
+    </body>
+</html>
