@@ -13,8 +13,10 @@ closeBtn.onclick = function () {
 }
 
 saveBtn.onclick = function () {
+    document.getElementById("modal-form").submit();
     modal.style.display = "none";
 }
+
 
 logoutBtn.onclick = function () {
     window.location.href = "login.html";
