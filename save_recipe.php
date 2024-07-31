@@ -8,23 +8,27 @@ if (!isset($_SESSION['user_id'])) {
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $cuisine = $_POST['cuisine'];
-    $dietary_preference = $_POST['dietary_preference'];
-    $ingredients = $_POST['ingredients'];
+    $name = $_POST['name'] ?? null;
+    $cuisine = $_POST['cuisine'] ?? null;
+    $dietary_preference = $_POST['dietary_preference'] ?? null;
+    $ingredients = $_POST['ingredients'] ?? null;
     $user_id = $_SESSION['user_id'];
 
-    $sql = "INSERT INTO recipes (name, cuisine, dietary_preference, ingredients, user_id) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $name, $cuisine, $dietary_preference, $ingredients, $user_id);
+    if ($name && $cuisine && $dietary_preference && $ingredients) {
+        $sql = "INSERT INTO recipes (name, cuisine, dietary_preference, ingredients, user_id) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssi", $name, $cuisine, $dietary_preference, $ingredients, $user_id);
 
-    if ($stmt->execute()) {
-        echo "Recipe saved!";
+        if ($stmt->execute()) {
+            echo "Recipe saved!";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "All fields are required.";
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>

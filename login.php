@@ -3,7 +3,7 @@ include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = $_POST['pass'];
 
     $sql = "SELECT id, password FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         session_start();
         $_SESSION['user_id'] = $id;
         header("Location: home.php");
+        exit;
     } else {
         echo "Invalid email or password.";
     }

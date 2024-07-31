@@ -2,21 +2,32 @@
 include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    // Debugging: Print the POST array
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
 
-    $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $email, $username, $password);
+    // Check if all required fields are set and not empty
+    if (isset($_POST['email']) && isset($_POST['login']) && isset($_POST['pass']) && !empty($_POST['email']) && !empty($_POST['login']) && !empty($_POST['pass'])) {
+        $email = $_POST['email'];
+        $username = $_POST['login'];
+        $password = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
-    if ($stmt->execute()) {
-        echo "Registration successful!";
+        $sql = "INSERT INTO users (email, username, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $email, $username, $password);
+
+        if ($stmt->execute()) {
+            header("Location: index.html");
+            exit;
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+        $conn->close();
     } else {
-        echo "Error: " . $stmt->error;
+        echo "All fields are required.";
     }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>

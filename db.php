@@ -1,12 +1,12 @@
 <?php
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
-$dbname = "RecipeManager";
+$dbname = "recipemanager";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+$conn = mysqli_connect($servername, $username, $password);
+mysqli_select_db($conn, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
