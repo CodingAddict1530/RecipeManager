@@ -27,6 +27,9 @@ if ($result->num_rows > 0) {
 
 $stmt->close();
 $conn->close();
+
+// Check if the recipe was added successfully
+$recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +41,40 @@ $conn->close();
     <meta name="keywords" content="HTML, CSS, JavaScript, Portfolio">
     <meta name="author" content="Alexis Mugisha, Michael Nwaeze, Igwilo Chidumebi">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style>
+        /* Modal styling */
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        #modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        #closeBtn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        #closeBtn:hover,
+        #closeBtn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div id="top-bar">
@@ -114,6 +151,16 @@ $conn->close();
         </div>
     </div>
 
+    <!-- New Recipe Form -->
+    <div id="new-recipe-form">
+        <form action="add_recipe.php" method="post">
+            <input type="text" name="recipe_name" placeholder="Recipe Name" required>
+            <textarea name="recipe_details" placeholder="Recipe Details" required></textarea>
+            <button type="submit">Add Recipe</button>
+        </form>
+    </div>
+
+    <!-- Modal for adding new recipes -->
     <div id="modal">
         <div id="modal-content">
             <form id="modal-form" method="post" action="save_recipe.php">
@@ -123,19 +170,19 @@ $conn->close();
                 </div>
                 <div id="new-recipe-name-container">
                     <label for="new-recipe-name">Name:</label>
-                    <input id="new-recipe-name" name="name" type="text" />
+                    <input id="new-recipe-name" name="name" type="text" required />
                 </div>
                 <div id="new-recipe-cuisine-container">
                     <label for="new-recipe-cuisine">Cuisine:</label>
-                    <input id="new-recipe-cuisine" name="cuisine" type="text" />
+                    <input id="new-recipe-cuisine" name="cuisine" type="text" required />
                 </div>
                 <div id="new-recipe-dp-container">
                     <label for="new-recipe-dp">Dietary Preference:</label>
-                    <input id="new-recipe-dp" name="dietary_preference" type="text" />
+                    <input id="new-recipe-dp" name="dietary_preference" type="text" required />
                 </div>
                 <div id="new-recipe-ingredients-container">
                     <label for="new-recipe-ingredients">Ingredients:</label>
-                    <select id="new-recipe-ingredients" name="ingredients">
+                    <select id="new-recipe-ingredients" name="ingredients[]" multiple>
                         <option value="salt">Salt</option>
                         <option value="pepper">Pepper</option>
                         <option value="sugar">Sugar</option>
@@ -148,6 +195,29 @@ $conn->close();
             </form>
         </div>
     </div>
-    <script src="js/scripts.js"></script>
+
+    <script>
+        // Open modal
+        document.getElementById('new-recipe').onclick = function() {
+            document.getElementById('modal').style.display = 'block';
+        };
+
+        // Close modal
+        document.getElementById('closeBtn').onclick = function() {
+            document.getElementById('modal').style.display = 'none';
+        };
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                document.getElementById('modal').style.display = 'none';
+            }
+        };
+
+        // Show success message if recipe was added
+        <?php if ($recipe_added): ?>
+        alert('Recipe Added Successfully. Press the OK button to go back to homepage.');
+        <?php endif; ?>
+    </script>
 </body>
 </html>
