@@ -1,23 +1,29 @@
-// login.php
+<?php
 session_start();
-require_once 'db_connection.php'; // Adjust path as needed
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['pass'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-    $stmt->bind_param("ss", $username, $password);
+    $sql = "SELECT id, password FROM users WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $stmt->store_result();
+    $stmt->bind_result($id, $hashed_password);
+    $stmt->fetch();
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username']; // Store username
-        header("Location: homepage.php");
-        exit();
+    if ($stmt->num_rows > 0 && password_verify($password, $hashed_password)) {
+        session_start();
+        $_SESSION['user_id'] = $id;
+        header("Location: home.php");
+        exit;
     } else {
-        echo "Invalid username or password.";
+        echo "Invalid email or password.";
     }
+
+    $stmt->close();
+    $conn->close();
 }
+?>

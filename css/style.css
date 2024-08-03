@@ -165,3 +165,16 @@ form > div {
     padding-bottom: 1em;
     font-weight: bold;
 }
+
+#new-recipe-ingredients-container {
+    width: 100%; /* Adjust as needed to fit your layout */
+    display: flex;
+    flex-direction: column;
+}
+
+#new-recipe-ingredients {
+    width: 100%; /* Make the input take up the full width of its container */
+    padding: 0.5em; /* Optional: add some padding for better visibility */
+    box-sizing: border-box; /* Ensures padding and border are included in the total width */
+}
+

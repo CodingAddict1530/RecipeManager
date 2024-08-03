@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bind_param("sss", $email, $username, $password);
 
         if ($stmt->execute()) {
-            header("Location: index.html");
+            // Redirect to login page
+            header("Location: login.html");
             exit;
         } else {
             echo "Error: " . $stmt->error;
