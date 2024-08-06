@@ -6,7 +6,24 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    width: 100%; 
+    background: linear-gradient(45deg, orange, white, black);
+    background-size: 300% 300%;
+    animation: color 12s ease-in-out infinite;
   }
+
+  @keyframes color{
+    0%{
+      background-position: 0 50%;
+    }
+    50%{
+      background-position: 100% 50%;
+    }
+    100%{
+      background-position: 0 50%;
+    }
+  }
+  
 
 form > div {
     padding: 0.4em 0.4em 0.4em 0;
@@ -75,17 +92,17 @@ form > div {
   }
 
 button[type="submit"] {
-    background-color: blue;
+    background-color: orange;
     color: white;
 }
 
 button[type="reset"] {
-    background-color: red;
+    background-color: grey;
     color: white;
 }
 
 button[type="button"] {
-    background-color: green;
+    background-color: black;
     color: white;
 }
 
@@ -113,3 +130,4 @@ input[type="checkbox"] {
 .invalid {
     border-color: red;
 }
+

@@ -7,15 +7,15 @@ if (!isset($_SESSION['user_id'])) {
 
 include 'db.php';
 
-// Fetch recipes from the database
+// Prepare and execute the query
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT name, cuisine, dietary_preference, ingredients FROM recipes WHERE user_id = ?";
+$sql = "SELECT id, name, cuisine, dietary_preference, ingredients FROM recipes WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Check if data is fetched
+// Fetch recipes from the database
 if ($result->num_rows > 0) {
     $recipes = [];
     while ($row = $result->fetch_assoc()) {
@@ -31,6 +31,9 @@ $conn->close();
 // Check if the recipe was added successfully
 $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,6 +119,7 @@ $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
                             <td>Cuisine</td>
                             <td>Dietary Preference</td>
                             <td>Ingredients</td>
+                            <td>Delete Recipe</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,6 +129,12 @@ $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
                             <td><?php echo htmlspecialchars($recipe['cuisine']); ?></td>
                             <td><?php echo htmlspecialchars($recipe['dietary_preference']); ?></td>
                             <td><?php echo htmlspecialchars($recipe['ingredients']); ?></td>
+                            <td>
+                                <form method="post" action="delete_recipe.php" style="display:inline;">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($recipe['id']); ?>">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -244,9 +254,9 @@ $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
         <?php endif; ?>
 
         // Logout button functionality
-    document.getElementById('logout').onclick = function() {
-        window.location.href = 'logout.php'; // Redirect to logout script
-    };
+        document.getElementById('logout').onclick = function() {
+            window.location.href = 'logout.php'; // Redirect to logout script
+        };
     </script>
 </body>
 </html>
