@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Execute the prepared statement
         if ($stmt->execute()) {
             // Redirect to the homepage after successful deletion
-            header("Location: home.php");
+            header("Location: index.php");
             exit; // Terminate the script to ensure the redirect happens
         } else {
             // Handle execution errors

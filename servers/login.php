@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_id'] = $id;
         
         // Redirect to the homepage
-        header("Location: home.php");
+        header("Location: index.php");
         exit; // Terminate the script to ensure the redirect happens
     } else {
         // Display an error message if the login credentials are invalid
