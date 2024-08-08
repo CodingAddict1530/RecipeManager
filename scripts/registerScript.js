@@ -4,7 +4,7 @@ const loginBtn = document.getElementById("loginBtn");
 // Set an event listener for the 'login' button click event
 loginBtn.onclick = function () {
     // Redirect the user to the 'login.html' page
-    window.location.href = "../html/login.html";
+    window.location.href = "../pages/login.html";
 }
 
 // Function to validate email, username, and password inputs

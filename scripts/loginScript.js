@@ -4,7 +4,7 @@ const registerBtn = document.getElementById("registerBtn");
 // Set an event listener for the 'register' button click event
 registerBtn.onclick = function () {
     // Redirect the user to the 'register.html' page
-    window.location.href = "../html/register.html";
+    window.location.href = "../pages/register.html";
 }
 
 // Function to validate email and password inputs

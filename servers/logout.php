@@ -9,6 +9,6 @@ session_unset();
 session_destroy();
 
 // Redirect to the login page
-header("Location: ../html/login.html");
+header("Location: ../pages/login.html");
 exit(); // Terminate the script to ensure the redirect happens
 ?>

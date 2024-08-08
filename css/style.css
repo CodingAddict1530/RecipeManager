@@ -83,7 +83,7 @@ h1 {
     transition: transform 0.2s ease-in-out;
 }
 
-#logout, #new-recipe, #modal-save, #modal-reset {
+#logout, #new-recipe, #modal-save, #modal-reset, #closeBtn {
     transition: transform 0.2s ease-in-out;
 }
 

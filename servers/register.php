@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->execute()) {
             // Redirect to login page
-            header("Location: ../html/login.html");
+            header("Location: ../pages/login.html");
             exit;
         } else {
             echo "Error: " . $stmt->error;
