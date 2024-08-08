@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
+    header("Location: ../html/login.html");
     exit;
 }
 
@@ -43,7 +43,7 @@ $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML, CSS, JavaScript, Portfolio">
     <meta name="author" content="Alexis Mugisha, Michael Nwaeze, Igwilo Chidumebi">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <style>
         /* Modal styling */
         #modal {
@@ -148,7 +148,7 @@ $recipe_added = isset($_GET['success']) && $_GET['success'] == 1;
 
     <div id="modal">
         <div id="modal-content">
-            <form id="modal-form" method="post" action="save_recipe.php">
+            <form id="modal-form" method="post" action="../servers/save_recipe.php">
                 <div id="modal-head">
                     <span>New Recipe</span>
                     <span id="closeBtn">&times;</span>

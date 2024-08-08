@@ -80,6 +80,11 @@ h1 {
     border-radius: 0.4em;
     border-width: 0.06em;
     font-size: 0.7em;
+    transition: transform 0.2s ease-in-out;
+}
+
+#logout, #new-recipe, #modal-save, #modal-reset {
+    transition: transform 0.2s ease-in-out;
 }
 
 .previous-btn:hover, .next-btn:hover, #new-recipe:hover, #closeBtn:hover, #modal-save:hover,
@@ -178,19 +183,19 @@ form > div {
     box-sizing: border-box; /* Ensures padding and border are included in the total width */
 }
 
-button[type="submit"] {
-    background-color: orange;
+.delete-btn {
+    background-color: rgb(255, 166, 0);
     color: #fff;
     padding: 5px 5px;
     margin-left: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   transition: transform 0.2s ease-in-out;
   }
 
-  button[type="submit"]:hover {
+.delete-btn:hover {
     opacity: 0.9;
     transform: scale(1.1);
   }
